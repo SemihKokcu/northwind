@@ -1,10 +1,23 @@
-
 <div class="mt-3">
-    <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-      </ul>
+  <ul  class="list-group">
+    <li
+    [class]="getAllCategory()"
+    routerLink="/products"
+    (click)="clearCurrentCategory()"
+    >
+    Tüm ürünler
+    </li>
+    <li
+      (click)="setCurrentCategory(category)"
+      routerLink="/products/category/{{category.categoryId}}"
+      *ngFor="let category of categories"
+      [class]="getCurrentCategory(category)"
+    >
+      {{ category.categoryName }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="currentCategory" class="alert alert-success mt-3" role="alert">
+  {{ currentCategory.categoryName }} Seçildi
 </div>
